@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
@@ -30,6 +31,10 @@ const data = [
 async function getFeedbacks(id:any) {
     router.push({path: '/feedback', query: {id: id}})
 }
+
+onMounted(async () => {
+    
+})
 </script>
     
 <template>

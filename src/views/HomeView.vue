@@ -4,15 +4,19 @@
 
 <template>
   <div class="homeCont">
+    
     <h1 class="heading">
       Turn Feedback into Fuel: Drive Improvement with <span>StrengthFeedback</span>
     </h1>
+
     <h2 class="content">
       Enroll yourself here and ask others to write about your Strengths.
     </h2>
+
     <router-link to="/enrollmember">
       <button class="enrollBtn">Enroll Now</button>
     </router-link>
+
   </div>
 </template>
 

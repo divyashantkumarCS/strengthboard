@@ -1,13 +1,22 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import axios from 'axios';
 
 const router = useRouter();
+const name = ref('');
+const email = ref('');
+
 
 async function enrollmember() {
+console.log(name.value, email.value);
     //push data to db
-
+    const res = await axios.post('https://test-project.remin.in/create-user', {
+        name : name.value,
+        email: email.value,
+    })
     //onsuccess
-    router.push({ path: '/feedback', query: { id: 1 } });
+    // router.push({ path: '/feedback', query: { id: 1 } });
 }
 </script>
     
@@ -22,8 +31,8 @@ async function enrollmember() {
                 <h3>Enroll here and get feedbacks from others.</h3>
 
                 <div class="inputCont">
-                    <input type="text" placeholder="Full name" name="name">
-                    <input type="text" placeholder="email" name="email">
+                    <input type="text" v-model="name" placeholder="Full name" name="name">
+                    <input type="text" v-model="email" placeholder="email" name="email">
 
                     <button class="enrollBtn" @click="enrollmember">
                         Enroll

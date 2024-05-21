@@ -17,7 +17,9 @@
       </div>
     </nav>
   </header>
-  <RouterView />
+
+  <RouterView>
+  </RouterView>
 </template>
 
 <style scoped>

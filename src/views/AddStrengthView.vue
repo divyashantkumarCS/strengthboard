@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
+const message = ref('')
 
 async function enrollmember() {
     //push data to db
@@ -22,7 +24,7 @@ async function enrollmember() {
                 <h3>Add strength feedback for {{ 'xyz' }}</h3>
 
                 <div class="inputCont">
-                    <textarea placeholder="Enter Strength Feedback" name="feedback" rows="8"></textarea>
+                    <textarea v-model="message" placeholder="Enter Strength Feedback" name="feedback" rows="8"></textarea>
 
                     <button class="enrollBtn" @click="enrollmember">
                         Add Feedback

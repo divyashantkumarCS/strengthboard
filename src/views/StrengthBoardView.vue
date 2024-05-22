@@ -1,32 +1,12 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+// @ts-ignore
+import { useUserStore } from "@/stores/user";
+
+const userStore = useUserStore();
 
 const router = useRouter();
-
-
-const data = [
-    {
-        id: 1,
-        name: 'member1',
-        feedbacks: 3,
-    },
-    {
-        id: 2,
-        name: 'member2',
-        feedbacks: 0,
-    },
-    {
-        id: 3,
-        name: 'member3',
-        feedbacks: 5,
-    },
-    {
-        id: 4,
-        name: 'member4',
-        feedbacks: 1,
-    },
-]
 
 async function getFeedbacks(id:any) {
     router.push({path: '/feedback', query: {id: id}})
@@ -49,11 +29,11 @@ onMounted(async () => {
                 <div>Feedbacks</div>
                 <div>View</div>
             </div>
-            <div class="tablecolumn tablecontent" v-for="item in data" :key="item.id">
-                <div class="name">{{ item.name }}</div>
-                <div class="feedbacks">{{ item.feedbacks }}</div>
+            <div class="tablecolumn tablecontent" v-for="user in userStore.users" :key="user.id">
+                <div class="name">{{ user.name }}</div>
+                <div class="feedbacks">{{ user.feedbacks?.length }}</div>
 
-                <button class="view" @click="() => getFeedbacks(item.id)">View</button>
+                <button class="view" @click="() => getFeedbacks(user.id)">View</button>
             </div>
         </div>
     </div>

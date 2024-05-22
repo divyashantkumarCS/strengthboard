@@ -1,15 +1,22 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
+// @ts-ignore
+import { useUserStore } from "@/stores/user";
+
+const route = useRoute();
+const userStore = useUserStore();
 
 const router = useRouter();
 const message = ref('')
 
 async function enrollmember() {
+    if(message.value.length <= 0) {
+        alert(`Please write feedback for ${route.query.user}.`)
+        return;
+    }
     //push data to db
-
-    //onsuccess
-    router.push({ path: '/feedback', query: { id: 1 } });
+    userStore?.addFeedback(route.query.id, message.value);
 }
 </script>
     
